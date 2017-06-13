@@ -1,0 +1,15 @@
+<div class="box-account box-recent">
+    <div class="box-head">
+        <h2><?php echo $this->__('Order history') ?></h2>
+    </div>
+    <?php $orderBlock = $this->getChild('order'); ?>
+    <div id="mtpayment-information-order">
+        <?php echo $orderBlock->toHtml(); ?>
+    </div>
+    <script>
+        var MTPAYMENT_ORDER_ID = '<?php echo $orderBlock->getOrder()->getId(); ?>';
+        var MTPAYMENT_INIT_PAYMENT = '<?php echo $orderBlock->isInitPayment(); ?>';
+        var MTPAYMENT_URL_TABLE_ORDER_STATUSES = '<?php echo $this->getUrl('mtpayment/orders/gethtmltableorderstatuses', array('_secure' => true)); ?>';
+    </script>
+</div>
+

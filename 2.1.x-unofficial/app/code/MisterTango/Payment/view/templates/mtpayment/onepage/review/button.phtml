@@ -1,0 +1,9 @@
+<a href="#"
+   class="mtpayment-button-pay"
+   data-language="<?php echo \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Store\Model\StoreManagerInterface')->getStore()->getCode(); ?>"
+   data-customer-email="<?php echo $this->getCustomerEmail(); ?>"
+   data-amount="<?php echo number_format($this->getGrandTotal(), 2, '.', ''); ?>"
+   data-currency="<?php echo $this->getCurrentCurrencyIsoCode(); ?>"
+   data-transaction="<?php echo $this->getTransactionId(); ?>">
+    <?php echo $this->__('Checkout'); ?> <?php echo $this->getGrandTotal(true); ?>
+</a>

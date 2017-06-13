@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<page xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <head>
+        <script src="https://payment.mistertango.com/resources/scripts/mt.collect.js?v=01" src_type="url" />
+		<script src="https://payment.mistertango.com/resources/scripts/third/socket/socket.io-1.2.1.js" type="text/javascript" src_type="url"></script>
+   </head>
+</page>

@@ -1,0 +1,51 @@
+<p>
+    <?php if ($this->isPaid($this->getOrder()->getId())): ?>
+    <?php echo $this->__('Payment for this order have been received'); ?>
+    <?php else: ?>
+    <?php echo $this->__('If you have not paid yet and you wish to make a payment'); ?> -
+    <a href="#"
+       class="mtpayment-button-pay"
+       data-websocket="<?php echo $this->getWebsocket($this->getOrder()->getId()); ?>"
+       data-language="<?php echo \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Store\Model\StoreManagerInterface')->getStore()->getCode(); ?>"
+       data-customer-email="<?php echo $this->getCustomerEmail(); ?>"
+       data-order="<?php echo $this->getOrder()->getId(); ?>"
+       data-amount="<?php echo number_format($this->getOrder()->getGrandTotal(), 2, '.', ''); ?>"
+       data-currency="<?php echo \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Store\Model\StoreManagerInterface')->getStore()->getCurrentCurrencyCode(); ?>"
+       data-transaction="<?php echo \Magento\Framework\App\ObjectManager::getInstance()->get('Mister\Tango\Payment\Helper\Data')->generateTransactionId($this->getOrder()->getQuoteId()); ?>">
+        <?php echo $this->__('click here'); ?>
+    </a>
+    <?php endif; ?>
+</p>
+<table class="data-table">
+    <tr>
+        <th>
+            <?php echo __('Date'); ?>
+        </th>
+        <th>
+            <?php echo __('Status'); ?>
+        </th>
+        <th>
+            <?php echo __('Comment'); ?>
+        </th>
+    </tr>
+    <?php foreach ($this->getOrder()->getStatusHistoryCollection(true) as $_item): ?>
+    <tr>
+        <td>
+            <strong>
+                <?php echo \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\Helper\AbstractHelper')->formatDate($_item->getCreatedAtDate(), 'medium') ?>
+            </strong>
+            <?php echo \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\Helper\AbstractHelper')->formatTime($_item->getCreatedAtDate(), 'medium') ?>
+        </td>
+        <td>
+            <strong>
+                <?php echo $_item->getStatusLabel() ?>
+            </strong>
+        </td>
+        <td>
+            <?php if ($_item->getComment()): ?>
+            <?php echo $this->escapeHtml($_item->getComment(), array('b','br','strong','i','u')) ?>
+            <?php endif; ?>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>

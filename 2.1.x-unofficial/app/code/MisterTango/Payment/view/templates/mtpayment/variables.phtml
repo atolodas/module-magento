@@ -1,0 +1,12 @@
+<script>
+require(["jquery", "prototype"], function(jQuery) {
+    var MTPAYMENT_USERNAME = '<?php echo $this->getUsername(); ?>';
+    var MTPAYMENT_IS_STANDARD_MODE = '<?php echo (int)\Magento\Framework\App\ObjectManager::getInstance()->get('Mister\Tango\Payment\Helper\Data')->isStandardMode(); ?>';
+    var MTPAYMENT_IS_OVERRIDDEN_CALLBACK_URL = <?php echo \Magento\Framework\App\ObjectManager::getInstance()->get('Mister\Tango\Payment\Helper\Data')->isOverriddenCallbackUrl()?'true':'false'; ?>;
+    var MTPAYMENT_CALLBACK_URL = '<?php echo \Magento\Framework\App\ObjectManager::getInstance()->get('Mister\Tango\Payment\Helper\Data')->getCallbackUrl(); ?>';
+    var MTPAYMENT_URL_ORDERS = '<?php echo $this->getUrl('mtpayment/orders', ['_secure' => true]); ?>';
+    var MTPAYMENT_URL_INFORMATION = '<?php echo \Magento\Framework\App\ObjectManager::getInstance()->get('Mister\Tango\Payment\Helper\Data')->getUrlInformation(); ?>';
+    var MTPAYMENT_URL_SUCCESS = '<?php echo \Magento\Framework\App\ObjectManager::getInstance()->get('Mister\Tango\Payment\Helper\Data')->getUrlSuccess(); ?>';
+    var MTPAYMENT_URL_CHECKOUT = '<?php echo $this->getUrl('mtpayment/checkout', ['_secure' => true]); ?>';
+});
+</script>

@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <reference name="root">
+            <head>
+                <css src="MisterTango_Payment::css/mtpayment/mtpayment.css?v=1.2.8"/>
+                <js class="MisterTango_Payment::mtpayment/mtpayment.js?v=1.2.8"/>
+                <!--<js class="MisterTango_Payment::mtpayment/mt.collect.js"/>-->
+                <block class="Magento\Framework\View\Element\Text" name="mtpayment.mtcollect">
+                    <action method="setText">
+                        <argument name="text" xsi:type="string">
+                            <script src="https://payment.mistertango.com/resources/scripts/mt.collect.js?v=01" type="text/javascript" src_type="url"></script>
+                            <script src="https://payment.mistertango.com/resources/scripts/third/socket/socket.io-1.2.1.js" type="text/javascript" src_type="url"></script>
+                        </argument>
+                    </action>
+                </block>
+                <block template="MisterTango_Payment::mtpayment/variables.phtml" class="MisterTango\Payment\Block\Variables" name="mtpayment.variables"/>
+            </head>
+        </reference>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="renders" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <!-- merge payment method renders here -->
+                                                                <item name="payment-mistertango" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">MisterTango_Payment/js/view/payment/mistertango</item>
+                                                                    <item name="methods" xsi:type="array">
+                                                                        <item name="mistertango" xsi:type="array">
+                                                                            <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                                <!-- item-renderer -->
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>
